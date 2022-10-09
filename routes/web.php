@@ -34,7 +34,7 @@ Route::post('/change_password', [UserController::class, 'change-password'])->nam
 Route::put('/update_information', [UserController::class, 'update_information'])->name('update-profile')->middleware('auth');
 Route::get('/commune_distances_list', [CommuneDistanceController::class, 'show'])->name('commune-distances-list')->middleware(['auth', 'role:admin|superadmin']);
 Route::get('/get_users', [UserController::class, 'get_users'])->name('get-users')->middleware(['auth', 'role:admin|superadmin']);
-Route::post('/create_user', [UserController::class, 'create'])->name('create-user')->middleware(['auth', 'role:admin|superadmin']);
+Route::get('/create_user', [UserController::class, 'create'])->name('create-user')->middleware(['auth', 'role:admin|superadmin']);
 Route::post('/add_user', [UserController::class, 'store'])->name('user-add')->middleware(['auth', 'role:admin|superadmin']);
 Route::get('/edit_user/{id}', [UserController::class, 'edit'])->name('edit-user')->middleware(['auth', 'role:admin|superadmin']);
 Route::put('/update_user/{id}', [UserController::class, 'update'])->name('update-user')->middleware(['auth', 'role:admin|superadmin']);
