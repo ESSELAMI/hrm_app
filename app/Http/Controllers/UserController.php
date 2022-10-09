@@ -64,8 +64,8 @@ class UserController extends Controller
                 //$agents = Agent::where('structure_id',Auth::user()->structure_id)->get();
                 return view('user.home');
                 break;
-            case 'chef_parc':
-                return view('parc_manager.home');
+            case 'admin':
+                return view('admin.home');
                 break;
             case 'responsable_patrimoine':
                 return view('parc_manager.home');
@@ -209,7 +209,7 @@ class UserController extends Controller
                 break;
             case 'admin':
                 $roles = Role::with('permissions')->whereNotIn('name', ['superadmin', 'admin', 'manager'])->get();
-                $users = User::with('structure', 'permissions', 'roles')->where('structure_id', Auth::user()->structure_id)->get();
+                $users = User::with('structure', 'permissions', 'roles')->where('structure_id', Auth::user()->structure_id)->where('id', '!=', Auth::user()->id)->get();
                 return view('admin.users_list', compact('users', 'roles'));
                 break;
         }
