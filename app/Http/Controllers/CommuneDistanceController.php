@@ -17,14 +17,14 @@ class CommuneDistanceController extends Controller
         $role = Auth::user()->getRoleNames()->first();
         switch ($role) {
             case 'superadmin':
-                $commune_distances = CommuneDistance::with('source','destination');
+                $commune_distances = CommuneDistance::with('source', 'destination');
                 $places = Place::all();
-                return view('superadmin.commune_distances_list',compact('commune_distances','places'));
+                return view('superadmin.commune_distances_list', compact('commune_distances', 'places'));
                 break;
             case 'admin':
                 $places = Place::all();
-                $commune_distances = CommuneDistance::with('source','destination');
-                return view('superadmin.commune_distances_list',compact('commune_distances','places'));
+                $commune_distances = CommuneDistance::with('source', 'destination');
+                return view('superadmin.commune_distances_list', compact('commune_distances', 'places'));
                 break;
         }
     }
@@ -41,10 +41,10 @@ class CommuneDistanceController extends Controller
 
     public function getCommuneDistances()
     {
-        $commune_distances = CommuneDistance::with('source','destination')->get();
+        $commune_distances = CommuneDistance::with('source', 'destination')->get();
         return response()->json([
             'commune_distances' => $commune_distances
-            ]);
+        ]);
     }
 
     /**
@@ -55,13 +55,13 @@ class CommuneDistanceController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $commune_distances = CommuneDistance::create($request->all());
 
         return response()->json([
-            'success'=>'L\'agence d\'assurance créée avec succès',
+            'success' => 'L\'agence d\'assurance créée avec succès',
             'commune_distances' => $commune_distances
-            ]);
+        ]);
     }
 
     /**
@@ -70,9 +70,21 @@ class CommuneDistanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $role = Auth::user()->getRoleNames()->first();
+        switch ($role) {
+            case 'superadmin':
+                $commune_distances = CommuneDistance::with('source', 'destination');
+                $places = Place::all();
+                return view('superadmin.commune_distances_list', compact('commune_distances', 'places'));
+                break;
+            case 'admin':
+                $places = Place::all();
+                $commune_distances = CommuneDistance::with('source', 'destination');
+                return view('superadmin.commune_distances_list', compact('commune_distances', 'places'));
+                break;
+        }
     }
 
     /**
@@ -99,9 +111,9 @@ class CommuneDistanceController extends Controller
         $commune_distance->update($request->all());
 
         return response()->json([
-            'success'=>'Information modifiée avec succès',
+            'success' => 'Information modifiée avec succès',
             'commune_distance' => $commune_distance
-            ]);
+        ]);
     }
 
     /**
@@ -116,7 +128,7 @@ class CommuneDistanceController extends Controller
         $commune_distance->delete();
 
         return response()->json([
-            'success'=>'Information supprimée avec succès',
-            ]);
+            'success' => 'Information supprimée avec succès',
+        ]);
     }
 }

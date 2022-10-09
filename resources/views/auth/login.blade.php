@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>CNAS | Gestion Parc Automobile</title>
+    <title>CNAS | Dashboard</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -19,7 +19,8 @@
     <meta name="author" content="#">
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
-    <!-- Google font--><link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
+    <!-- Google font-->
+    <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
     <!-- themify-icons line icon -->
@@ -33,21 +34,41 @@
 <body class="fix-menu">
     <!-- Pre-loader start -->
     <div class="theme-loader">
-    <div class="ball-scale">
-        <div class='contain'>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
-            <div class="ring"><div class="frame"></div></div>
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
     <!-- Pre-loader end -->
 
     <section class="login-block">
@@ -58,67 +79,67 @@
                     <!-- Authentication card start -->
 
                     <form class="md-float-material form-material" method="POST" action="{{ route('login') }}">
-                            @csrf
+                        @csrf
                         <div class="text-center">
                             <img src="{{ asset('images/logo.png') }}" alt="logo.png">
                         </div>
-                            <div class="auth-box card">
-                                <div class="card-block">
-                                    <div class="row m-b-50">
-                                        <div class="col-md-12">
-                                            <h3 class="text-center">Identification</h3>
-                                        </div>
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row m-b-50">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center">Identification</h3>
                                     </div>
-                                    <div class="form-group form-primary">
-                                        <input placeholder="Nom d'utilisateur" id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                </div>
+                                <div class="form-group form-primary">
+                                    <input placeholder="Nom d'utilisateur" id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
-                                        @if ($errors->has('username'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('username') }}</strong>
-                                            </span>
-                                        @endif
-                                        <span class="form-bar"></span>
-                                    </div>
-                                    <div class="form-group form-primary">
+                                    @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                    @endif
+                                    <span class="form-bar"></span>
+                                </div>
+                                <div class="form-group form-primary">
                                     <input placeholder="Mot de passe" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                                      @if ($errors->has('password'))
-                                          <span class="invalid-feedback" role="alert">
-                                              <strong>{{ $errors->first('password') }}</strong>
-                                          </span>
-                                      @endif
-                                        <span class="form-bar"></span>
-                                    </div>
-                                    <div class="row m-t-25 text-left">
-                                        <div class="col-12">
-                                            <div class="checkbox-fade fade-in-success d-">
-                                                <label>
-                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check text-primary"></i></span>
-                                                    <span class="text-inverse">Restez connecté</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row m-t-30">
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Connecter</button>
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <p class="text-inverse text-left m-b-0">&copy; CNAS 2018 </p>
-                                            <p class="text-inverse text-left"><b class="f-w-600">V 1.7.4</b></p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <img src="{{ asset('images/auth/Logo-small-bottom.png') }}" alt="Logo-small-bottom.png">
+                                    @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                    <span class="form-bar"></span>
+                                </div>
+                                <div class="row m-t-25 text-left">
+                                    <div class="col-12">
+                                        <div class="checkbox-fade fade-in-success d-">
+                                            <label>
+                                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check text-primary"></i></span>
+                                                <span class="text-inverse">Restez connecté</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Connecter</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="text-inverse text-left m-b-0">&copy; CNAS 2022 </p>
+                                        <p class="text-inverse text-left"><b class="f-w-600">V 1.0.0</b></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="{{ asset('images/auth/Logo-small-bottom.png') }}" alt="Logo-small-bottom.png">
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                        <!-- end of form -->
+                        </div>
+                    </form>
+                    <!-- end of form -->
                 </div>
                 <!-- end of col-sm-12 -->
             </div>

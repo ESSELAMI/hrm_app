@@ -7,17 +7,19 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Cache;
+
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password','username',
+        'fullname', 'email', 'password', 'username',
     ];
 
     /**
@@ -41,7 +43,6 @@ class User extends Authenticatable
 
     public function isOnline()
     {
-        return Cache::has('user-is-online-' . $this->id); 
+        return Cache::has('user-is-online-' . $this->id);
     }
-
 }

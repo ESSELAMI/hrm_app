@@ -3,7 +3,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <title>CNAS | Gestion Resources Humaines </title>
+    <title>CNAS | Dashboard </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -100,13 +100,14 @@
 
         .unread {
 
-    background-color: #d6e3ff;
-}
+            background-color: #d6e3ff;
+        }
 
 
-        body{
+        body {
             zoom: 90%
         }
+
         /* nav{
             zoom : 108%
         } */
@@ -248,8 +249,7 @@
                                             <span> {{ Auth::user()->username }}</span>
                                             <i class="feather icon-chevron-down"></i>
                                         </div>
-                                        <ul class="show-notification profile-notification dropdown-menu "
-                                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" >
+                                        <ul class="show-notification profile-notification dropdown-menu " data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                             <li>
                                                 <a href="user_profile">
                                                     <i class="feather icon-user"></i> Mon profile
@@ -270,8 +270,7 @@
                                             document.getElementById('logout-form').submit();">
                                                     <i class="feather icon-log-out"></i> Déconnexion
                                                 </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                    style="display: none;">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     @csrf
                                                 </form>
                                             </li>
@@ -341,8 +340,8 @@
 
                                             <!-- Page content start -->
                                             {{-- <div class="row"> --}}
-                                                @yield('page_content')
-                                                {{-- </div> --}}
+                                            @yield('page_content')
+                                            {{-- </div> --}}
                                             {{--
                                             <!-- Page content end --> --}}
 
@@ -401,147 +400,145 @@
     <p>Sorry for the inconvenience!</p>
 </div>
 <![endif]-->
-<!-- Warning Section Ends -->
-<!-- Required Jquery -->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
 
-<script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
-{{-- <script type="text/javascript" src="{{ asset('js/gpa.js') }}"></script> --}}
-
-
-<script type="text/javascript" src="{{ asset('bower_components/jquery/js/jquery.min.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
-<script src="{{ asset('js/multi-select.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/iziToast.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/vue.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('js/gpa.js') }}"></script> --}}
 
 
+    <script type="text/javascript" src="{{ asset('bower_components/jquery/js/jquery.min.js') }}"></script>
 
-<!-- notification js -->
-<script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('pages/notification/notification.js') }}"></script>
-<!-- Bootstrap date-time-picker js -->
-<script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/moment-range.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('pages/advance-elements/bootstrap-datetimepicker.min.js') }}"></script>
-<!-- Date-range picker js -->
-<script type="text/javascript" src="{{ asset('bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}"></script>
-<!-- Date-dropper js -->
-<script type="text/javascript" src="{{ asset('bower_components/datedropper/js/datedropper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/multi-select.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/iziToast.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
 
 
-<script type="text/javascript" src="{{ asset('js/jquery-cloneya.min.js') }}"></script>
-<!-- jquery slimscroll js -->
-<script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
-<!-- modernizr js -->
-<script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
+
+    <!-- notification js -->
+    <script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('pages/notification/notification.js') }}"></script>
+    <!-- Bootstrap date-time-picker js -->
+    <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/moment-range.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('pages/advance-elements/bootstrap-datetimepicker.min.js') }}"></script>
+    <!-- Date-range picker js -->
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}"></script>
+    <!-- Date-dropper js -->
+    <script type="text/javascript" src="{{ asset('bower_components/datedropper/js/datedropper.min.js') }}"></script>
 
 
+    <script type="text/javascript" src="{{ asset('js/jquery-cloneya.min.js') }}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 
 
 
 
-<script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('bower_components/chart.js/js/Chart.js') }}"></script>
-
-<script src="{{ asset('pages/widget/amchart/amcharts.js') }}"></script>
-<script src="{{ asset('pages/widget/amchart/serial.js') }}"></script>
-<script src="{{ asset('pages/widget/amchart/light.js') }}"></script>
-<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/SmoothScroll.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('bower_components/switchery/js/switchery.min.js') }}"></script>
 
 
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('pages/widget/excanvas.js') }}"></script>
-<!-- data-table js -->
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('pages/data-table/js/jszip.min.js') }}"></script>
-<script src="{{ asset('pages/data-table/js/pdfmake.min.js') }}"></script>
-<script src="{{ asset('pages/data-table/js/vfs_fonts.js') }}"></script>
-<script src="{{ asset('pages/data-table/extensions/buttons/js/buttons.colVis.min.js') }}"></script>
-<script src="{{ asset('pages/data-table/extensions/responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/animation.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/chart.js/js/Chart.js') }}"></script>
+
+    <script src="{{ asset('pages/widget/amchart/amcharts.js') }}"></script>
+    <script src="{{ asset('pages/widget/amchart/serial.js') }}"></script>
+    <script src="{{ asset('pages/widget/amchart/light.js') }}"></script>
+    <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/SmoothScroll.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bower_components/switchery/js/switchery.min.js') }}"></script>
+
+    <!-- <script type="text/javascript" src="{{ asset('pages/dashboard/custom-dashboard.js') }}"></script> -->
+
+    <script type="text/javascript" src="{{ asset('pages/widget/excanvas.js') }}"></script>
+    <!-- data-table js -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('pages/data-table/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('pages/data-table/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('pages/data-table/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('pages/data-table/extensions/buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('pages/data-table/extensions/responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/animation.js') }}"></script>
 
 
 
-<script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/ion.sound.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ion.sound.min.js') }}"></script>
 
-{{-- <script type="text/javascript" src="{{ asset('pages/advance-elements/swithces.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('pages/advance-elements/swithces.js') }}"></script> --}}
 
 
-{{-- <script type="text/javascript" src="{{ asset('js/modal.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('js/modal.js') }}"></script> --}}
 
-<!-- jquery slimscroll js -->
-{{-- <script type="text/javascript" src="{{ asset('bower_components/intro.js/js/intro.js') }}"></script> --}}
-<script type="text/javascript" src="{{ asset('js/bootstrap-tour-standalone.js') }}"></script>
+    <!-- jquery slimscroll js -->
+    {{-- <script type="text/javascript" src="{{ asset('bower_components/intro.js/js/intro.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('js/bootstrap-tour-standalone.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('pages/toolbar/jquery.toolbar.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/select2/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('pages/toolbar/jquery.toolbar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2.full.min.js') }}"></script>
 
-<!-- Multiselect js -->
-<script type="text/javascript" src="{{ asset('bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.quicksearch.js') }}"></script>
-<!-- Custom js -->
-<script type="text/javascript" src="{{ asset('pages/advance-elements/select2-custom.js') }}"></script>
-<script type="text/javascript" src="{{ asset('pages/task-board/task-board.js') }}"></script>
-{{-- <script type="text/javascript" src="{{ asset('pages/advance-elements/custom-picker.js') }}"></script> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tour.min.css') }}">
-<script src="{{ asset('js/pcoded.min.js') }}"></script>
-<script src="{{ asset('pages/data-table/extensions/buttons/js/extension-btns-custom.js') }}"></script>
-<script src="{{ asset('pages/jquery.filer/js/jquery.filer.min.js') }}"></script>
-<script src="{{ asset('js/html2canvas.js') }}"></script>
-{{-- jspdf --}}
-<script src="{{ asset('js/cleave.min.js') }}"></script>
-<script src="{{ asset('js/jspdf.debug.js') }}"></script>
-<script src="{{ asset('js/JsBarcode.all.js') }}"></script>
-{{-- <script src="{{ asset('js/wwDigital-normal.js') }}"></script> --}}
-{{-- <script src="{{ asset('js/jspdf.customfonts.min.js') }}"></script> --}}
-{{-- <script src="{{ asset('js/default_vfs.js') }}"></script> --}}
+    <!-- Multiselect js -->
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.quicksearch.js') }}"></script>
     <!-- Custom js -->
-   
-    <script type="text/javascript" src="{{ asset('js/inputmask.min.js') }}"></script> 
+    <script type="text/javascript" src="{{ asset('pages/advance-elements/select2-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('pages/task-board/task-board.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('pages/advance-elements/custom-picker.js') }}"></script> --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tour.min.css') }}">
+    <script src="{{ asset('js/pcoded.min.js') }}"></script>
+    <script src="{{ asset('pages/data-table/extensions/buttons/js/extension-btns-custom.js') }}"></script>
+    <script src="{{ asset('pages/jquery.filer/js/jquery.filer.min.js') }}"></script>
+    <script src="{{ asset('js/html2canvas.js') }}"></script>
+    {{-- jspdf --}}
+    <script src="{{ asset('js/cleave.min.js') }}"></script>
+    <script src="{{ asset('js/jspdf.debug.js') }}"></script>
+    <script src="{{ asset('js/JsBarcode.all.js') }}"></script>
+    {{-- <script src="{{ asset('js/wwDigital-normal.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/jspdf.customfonts.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/default_vfs.js') }}"></script> --}}
+    <!-- Custom js -->
+
+    <script type="text/javascript" src="{{ asset('js/inputmask.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('pages/toolbar/custom-toolbar.js') }}"></script>
 
-<script src="{{ asset('js/vartical-layout.min.js') }}"></script>
-<script src="{{ asset('js/jquery.blockUI.js') }}"></script>
-{{-- <script src="{{ asset('js/app.min.js') }}"></script> --}}
-<script src="{{ asset('js/block-ui.js') }}"></script>
-<script>
-    
-ion.sound({
-        sounds: [
-            {
-                name: "ding_ding",
-            },
+    <script src="{{ asset('js/vartical-layout.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.blockUI.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.min.js') }}"></script> --}}
+    <script src="{{ asset('js/block-ui.js') }}"></script>
+    <script>
+        ion.sound({
+            sounds: [{
+                    name: "ding_ding",
+                },
 
-        ],
-        volume: 1,
-        path: "sounds/",
-        preload: true
-    });
-</script>
-@yield('page_scripts')
+            ],
+            volume: 1,
+            path: "sounds/",
+            preload: true
+        });
+    </script>
+    @yield('page_scripts')
 
-{{-- <script>
+    {{-- <script>
         new Vue({
             el: '#app',
             data() {
@@ -578,29 +575,28 @@ ion.sound({
         });
 
         </script> --}}
- <!-- modalEffects js nifty modal window effects -->
- {{-- <script type="text/javascript" src="{{ asset('js/modalEffects.js') }}"></script> --}}
- <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-<script>
-$(function () {
+    <!-- modalEffects js nifty modal window effects -->
+    {{-- <script type="text/javascript" src="{{ asset('js/modalEffects.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script>
+        $(function() {
 
-    // $("[rel='tooltip']").tooltip({'placement': 'right', 'container':'.modal-title'});
-        $('body').tooltip({
-            selector: '[data-toggle="tooltip"]',
-            'placement': 'right',
-            'z-index': '30000000'
+            // $("[rel='tooltip']").tooltip({'placement': 'right', 'container':'.modal-title'});
+            $('body').tooltip({
+                selector: '[data-toggle="tooltip"]',
+                'placement': 'right',
+                'z-index': '30000000'
+            });
+            $("[rel=tooltip]").tooltip({
+                html: true,
+                placement: 'top',
+                container: '.modal-dialog',
+                title: '',
+                'z-index': '30000000'
+            });
         });
-        $("[rel=tooltip]").tooltip({
-            html:true,
-            placement: 'top',
-            container: '.modal-dialog',
-            title: '',
-            'z-index': '30000000'
-    });
-    });
-
-</script>
+    </script>
 
 </body>
 
