@@ -245,7 +245,7 @@
                                 <li class="user-profile header-notification">
                                     <div class="dropdown-primary dropdown" style="width:auto">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <img src="{{ asset('images/avatar-1.jpg') }}" class="img-radius" alt="">
+                                            <img src="{{ asset('images/favicon.ico') }}" class="img-radius" alt="">
                                             <span> {{ Auth::user()->username }}</span>
                                             <i class="feather icon-chevron-down"></i>
                                         </div>
