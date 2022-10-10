@@ -57,60 +57,117 @@
         </div>
     </div>
 
-    <div class="col-md-12">
 
-        <div class="card">
-            <div class="card-header table-card-header">
-                <h5 style="font-size:18px">Liste des services</h5>
-                <div class="card-header-right">
-                    <ul class="list-unstyled card-option">
-                        <li>
-                            <span data-toggle="modal" data-target="#service-modal">
-                                <i class="fa fa-plus faa-horizontal animated text-success " data-toggle="tooltip" data-placement="top" data-original-title="Ajouter un service" style="font-size:22px" v-on:click="operation='add'">
-                                </i>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+</div>
+<div class="row col-md-12 center">
 
-            <div class="card-block">
-                <div class="dt-responsive table-responsive">
-                    <table id="services-table" class="table  table-bordered ">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="width:1px">#</th>
-                                <th style="width:auto">SERVICE</th>
-
-
-                                <th class="text-center noExport" style="width:10px">ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(service, index) in services">
-                                <td style="width:10px">@{{ index+1 }}</td>
-                                <td style="width:auto">@{{ service.name.toUpperCase() }}</td>
-
-
-
-                                <td style="width:20px">
-                                    <div class="text-center">
-                                        <span data-toggle="modal" data-target="#service-modal" v-on:click="edit_service(service,index)">
-                                            <i class="feather icon-edit text-info f-18 clickable" data-toggle="tooltip" data-placement="top" data-original-title="Modifier">
-                                            </i>
-                                        </span>
-                                        <i class="feather icon-trash text-danger f-18 clickable" v-on:click="delete_service(service.id,index)" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer">
-                                        </i>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
+    <div class="card col-md-5">
+        <div class="card-header table-card-header">
+            <h5 style="font-size:18px">Liste des services</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li>
+                        <span data-toggle="modal" data-target="#service-modal">
+                            <i class="fa fa-plus faa-horizontal animated text-success " data-toggle="tooltip" data-placement="top" data-original-title="Ajouter un service" style="font-size:22px" v-on:click="operation='add'">
+                            </i>
+                        </span>
+                    </li>
+                </ul>
             </div>
         </div>
+
+        <div class="card-block">
+            <div class="dt-responsive table-responsive">
+                <table id="services-table" class="table  table-bordered ">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width:1px">#</th>
+                            <th style="width:auto">SERVICE</th>
+
+
+                            <th class="text-center noExport" style="width:10px">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(service, index) in services" v-on:click="get_rubriques(service)">
+                            <td style="width:10px">@{{ index+1 }}</td>
+                            <td style="width:auto">@{{ service.name.toUpperCase() }}</td>
+
+
+
+                            <td style="width:20px">
+                                <div class="text-center">
+                                    <span data-toggle="modal" data-target="#service-modal" v-on:click="edit_service(service,index)">
+                                        <i class="feather icon-edit text-info f-18 clickable" data-toggle="tooltip" data-placement="top" data-original-title="Modifier">
+                                        </i>
+                                    </span>
+                                    <i class="feather icon-trash text-danger f-18 clickable" v-on:click="delete_service(service.id,index)" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer">
+                                    </i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
     </div>
+
+
+    <div class="card col-md-5">
+        <div class="card-header table-card-header">
+            <h5 style="font-size:18px">Liste des rubriques</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li>
+                        <span data-toggle="modal" data-target="#rubrique-modal">
+                            <i class="fa fa-plus faa-horizontal animated text-success " data-toggle="tooltip" data-placement="top" data-original-title="Ajouter un service" style="font-size:22px" v-on:click="operation='add'">
+                            </i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-block">
+            <div class="dt-responsive table-responsive">
+                <table id="rubriques-table" class="table  table-bordered ">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width:1px">#</th>
+                            <th style="width:auto">SERVICE</th>
+
+
+                            <th class="text-center noExport" style="width:10px">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(rubrique, index) in rubriques">
+                            <td style="width:10px">@{{ index+1 }}</td>
+                            <td style="width:auto">@{{ rubrique.name.toUpperCase() }}</td>
+
+
+
+                            <td style="width:20px">
+                                <div class="text-center">
+                                    <span data-toggle="modal" data-target="#rubrique-modal" v-on:click="edit_service(service,index)">
+                                        <i class="feather icon-edit text-info f-18 clickable" data-toggle="tooltip" data-placement="top" data-original-title="Modifier">
+                                        </i>
+                                    </span>
+                                    <i class="feather icon-trash text-danger f-18 clickable" v-on:click="delete_service(service.id,index)" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer">
+                                    </i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
 
@@ -132,8 +189,9 @@
                 selectedServiceIndex: '',
                 notifications: [],
                 notifications_fetched: false,
+                service: null,
 
-
+                rubriques: [],
                 services: [],
                 errors: [],
             }
@@ -300,8 +358,22 @@
                 this.selectedServiceIndex = index;
                 this.operation = 'edit';
                 this.modal_title = "Modifier une service";
-
+                this.service = this.services[this.selectedServiceId];
+                console.log(this.service);
                 this.name = service.name;
+
+
+
+
+
+            },
+            get_rubriques(service, index) {
+                this.selectedServiceId = service.id;
+                this.selectedServiceIndex = index;
+                console.log(this.service);
+                this.rubriques = service.rubriques;
+                console.log(this.rubriques);
+
 
 
 
