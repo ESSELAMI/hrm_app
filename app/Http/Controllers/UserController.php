@@ -308,7 +308,7 @@ class UserController extends Controller
     }
     public function getUsers()
     {
-        $users = User::where('structure_id', Auth::user()->structure_id)->get();
+        $users = User::where('structure_id', Auth::user()->structure_id)->where('id', '!=', Auth::user()->id)->get();
 
         return response()->json([
             'users' => $users,
@@ -319,11 +319,11 @@ class UserController extends Controller
         $role = Auth::user()->getRoleNames()->first();
         switch ($role) {
             case 'superadmin':
-                $users = User::with('structure')->get();
+                $users = User::with('structure')->where('id', '!=', Auth::user()->id)->get();
                 return compact('users');
                 break;
             case 'admin':
-                $users = User::with('structure')->where('structure_id', Auth::user()->structure_id)->get();
+                $users = User::with('structure')->where('structure_id', Auth::user()->structure_id)->where('id', '!=', Auth::user()->id)->get();
                 return compact('users');
                 break;
         }

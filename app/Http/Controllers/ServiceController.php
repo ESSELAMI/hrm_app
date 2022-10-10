@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -14,7 +15,18 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        // $role = Auth::user()->getRoleNames()->first();
+        // switch ($role) {
+        //     case 'superadmin':
+        //         $services = Service::with('rubriques')->get();
+        //         return view('admin.services_list', compact('services'));
+        //         break;
+        //     case 'admin':
+        //         $services = Service::with('rubriques')->get();
+        //         return view('admin.services_list', compact('services'));
+        //         break;
+        // }
+        return view('admin.services_list');
     }
 
     /**
@@ -81,5 +93,11 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+    }
+
+    public function getServices()
+    {
+        $services = Service::with('rubriques')->get();
+        return compact('services');
     }
 }

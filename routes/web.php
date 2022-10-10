@@ -21,6 +21,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\LeaveDocController;
+use App\Http\Controllers\ServiceController;
 
 
 
@@ -54,14 +55,16 @@ Route::get('/leavedocs_list', [LeaveDocController::class, 'index'])->name('leave
 
 
 
+Route::get('/roles_list', [RoleController::class, 'index'])->name('roles-list')->middleware(['auth', 'role:superadmin']);
+Route::get('/services_list', [ServiceController::class, 'index'])->name('services-list')->middleware(['auth', 'role:superadmin|admin']);
 
 Route::get('/confirmedlevels_list', [ConfirmedLevelController::class, 'index'])->name('confirmedlevels-list')->middleware(['auth', 'role_or_permission:user']);
 
 Route::get('/getRoles', [RoleController::class, 'getRoles'])->name('getRoles')->middleware(['auth', 'role:superadmin']);
+Route::get('/getServices', [ServiceController::class, 'geServices'])->name('geServices')->middleware(['auth', 'role:superadmin|admin']);
 Route::post('/role_assign_permissions/{id}', [RoleController::class, 'assignPermissions'])->name('role-assign-permissions')->middleware(['auth', 'role:superadmin']);
 
 Route::post('/role_revoke_permission/{id}', [RoleController::class, 'revokePermission'])->name('role-revoke-permissions')->middleware(['auth', 'role:superadmin']);
-Route::get('/roles_list', [RoleController::class, 'index'])->name('roles-list')->middleware(['auth', 'role:superadmin']);
 Route::post('/role_add', [RoleController::class, 'store'])->name('role-add')->middleware(['auth', 'role:superadmin']);
 
 Route::put('/role_edit/{id}', [RoleController::class, 'update'])->name('role-update')->middleware(['auth', 'role:superadmin']);
@@ -85,6 +88,7 @@ Route::resource('photos', PhotoController::class);
 
 
 Route::resource('permissions', PermissionController::class);
+Route::resource('services', ServiceController::class)->middleware(['auth', 'role_or_permission:admin|superadmin']);
 Route::resource('agents', AgentController::class)->middleware(['auth', 'role_or_permission:user']);
 Route::resource('missions', MissionController::class)->middleware(['auth', 'role_or_permission:user']);
 

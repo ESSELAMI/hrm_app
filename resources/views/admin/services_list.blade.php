@@ -12,8 +12,8 @@
 @endsection
 
 @section('page_title')
-<h4>Liste des services</h4>
-<span>Ajouter, modifer ou supprimer un service </span>
+<h4>Liste des roles</h4>
+<span>Ajouter, modifer ou supprimer un roles </span>
 @endsection
 
 @section('breadcrumb')
@@ -21,73 +21,73 @@
     <a href="{{ route('home') }}"> <i class="feather icon-home"></i></a>
 </li>
 <li class="breadcrumb-item">
-    <a href="{{ route('services-list') }}">Liste des services</a>
+    <a href="{{ route('services-list') }}">Liste des roles</a>
 </li>
 @endsection
 
 
-@include('admin.navigation')
+@include('superadmin.navigation')
 
 
 @section('page_content')
 <div class="row">
     <!-- Modal static-->
-    <div class="modal fade" id="add-service-modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="add-role-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ajouter un service</h5>
+                    <h5 class="modal-title">Ajouter un rôle</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" :class="[errors.name ? 'form-control form-control-danger' : 'form-control form-control-success']" placeholder="Entrer le nom du service..." maxlength="25" v-model="newService" required v-on:input="errors.name=null" />
+                    <input type="text" :class="[errors.name ? 'form-control form-control-danger' : 'form-control form-control-success']" placeholder="Entrer le nom du rôle..." maxlength="25" v-model="newRole" required v-on:input="errors.name=null" />
                     <p class="text-danger m-t-5" v-if="errors.name">@{{errors.name.toString()}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light" v-on:click="add_service()">Sauvgarder</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" v-on:click="add_role()">Sauvgarder</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="edit-service-modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="edit-role-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modifer un service</h5>
+                    <h5 class="modal-title">Modifer un rôle</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" :class="[errors.name ? 'form-control form-control-danger' : 'form-control form-control-success']" maxlength="25" required v-on:input="errors.name=null" :placeholder="selectedServiceName" v-model="roleName" />
+                    <input type="text" :class="[errors.name ? 'form-control form-control-danger' : 'form-control form-control-success']" maxlength="25" required v-on:input="errors.name=null" :placeholder="selectedRoleName" v-model="roleName" />
                     <p class="text-danger m-t-5" v-if="errors.name">@{{errors.name.toString()}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light" v-on:click="update_service(roleName,selectedServiceIndex)">Sauvgarder</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" v-on:click="update_role(roleName,selectedRoleIndex)">Sauvgarder</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="assign-rubriques-modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="assign-permissions-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title"> Atrribuer des rubriques pour le service : <span v-if="selectedServiceName" class="label label-info"> <strong> @{{selectedServiceName}} </strong></span> </h6>
+                    <h6 class="modal-title"> Atrribuer des permissions pour le rôle : <span v-if="selectedRoleName" class="label label-info"> <strong> @{{selectedRoleName}} </strong></span> </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <select multiple="multiple" id="test" v-model="selectedRubriques" style="height:400px">
+                    <select multiple="multiple" id="test" v-model="selectedPermissions" style="height:400px">
                     </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light" v-on:click="assign_rubriques()">Sauvgarder</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" v-on:click="assign_permissions()">Sauvgarder</button>
                 </div>
             </div>
         </div>
@@ -98,13 +98,13 @@
         <div class="card">
             <div class="card-header table-card-header">
 
-                <h5>Liste des services</h5>
+                <h5>Liste des rôles</h5>
 
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">
                         <li>
-                            <span data-toggle="tooltip" data-placement="top" data-original-title="Ajouter un service">
-                                <i class="feather icon-plus text-success md-trigger" data-toggle="modal" data-target="#add-service-modal">
+                            <span data-toggle="tooltip" data-placement="top" data-original-title="Ajouter un rôle">
+                                <i class="feather icon-plus text-success md-trigger" data-toggle="modal" data-target="#add-role-modal">
                                 </i>
                             </span>
                         </li>
@@ -115,7 +115,7 @@
             <div class="card-block">
                 <div class="dt-responsive table-responsive">
 
-                    <table id="services-table" class="table table-hover table-bordered nowrap">
+                    <table id="roles-table" class="table table-hover table-bordered nowrap">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width:20px">#</th>
@@ -124,18 +124,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(service, index) in services" v-bind:key="index" :class="{'selected-row': selectedServiceName === service.name}" v-on:click="showRubriques(service, service.rubriques),selectedServiceIndex = index">
+                            <tr v-for="(service, index) in services" v-bind:key="index" :class="{'selected-row': selectedRoleName === role.name}" v-on:click="showPermissions(role, role.permissions),selectedRoleIndex = index">
                                 <td>@{{ index+1}}</td>
-                                <td>@{{ service.name }}</td>
+                                <td>@{{ role.name }}</td>
                                 <td>
                                     <div class="text-center">
                                         <span data-toggle="tooltip" data-placement="top" data-original-title="Modifier">
-                                            <i class="feather icon-edit text-custom f-18 clickable md-trigger" data-toggle="modal" data-target="#edit-service-modal" v-on:click="roleName=service.name">
+                                            <i class="feather icon-edit text-custom f-18 clickable md-trigger" data-toggle="modal" data-target="#edit-role-modal" v-on:click="roleName=role.name">
                                             </i>
                                         </span>
-                                        <i class="feather icon-trash text-danger f-18 clickable" v-on:click="deleteService(service.id, index)" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer">
+                                        <i class="feather icon-trash text-danger f-18 clickable" v-on:click="deleteRole(role.id, index)" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer">
                                         </i>
-                                        <i class="feather icon-lock text-warning f-18 clickable" v-on:click="showRubriques(service, service.rubriques)" data-toggle="tooltip" data-placement="top" data-original-title="Afficher les Rubriques">
+                                        <i class="feather icon-lock text-warning f-18 clickable" v-on:click="showPermissions(role, role.permissions)" data-toggle="tooltip" data-placement="top" data-original-title="Afficher les Permissions">
                                         </i>
                                     </div>
                                 </td>
@@ -152,13 +152,13 @@
         <div class="card">
             <div class="card-header table-card-header">
 
-                <h5>Liste des rubriques associées pour le service: <span class="label label-info" v-if="selectedServiceName"> <strong>@{{selectedServiceName}} </strong></span> </h5>
+                <h5>Liste des permissions associées pour le rôle: <span class="label label-info" v-if="selectedRoleName"> <strong>@{{selectedRoleName}} </strong></span> </h5>
 
-                <div class="card-header-right" v-if="selectedServiceName">
+                <div class="card-header-right" v-if="selectedRoleName">
                     <ul class="list-unstyled card-option">
                         <li>
-                            <span data-toggle="tooltip" data-placement="left" data-original-title="Attribuer des rubriques">
-                                <i class="feather icon-plus text-success md-trigger" data-toggle="modal" data-target="#assign-rubriques-modal" v-on:click="get_selected_rubriques()">
+                            <span data-toggle="tooltip" data-placement="left" data-original-title="Attribuer des permissions">
+                                <i class="feather icon-plus text-success md-trigger" data-toggle="modal" data-target="#assign-permissions-modal" v-on:click="get_selected_permissions()">
                                 </i>
                             </span>
                         </li>
@@ -169,21 +169,21 @@
             <div class="card-block">
                 <div class="dt-responsive table-responsive">
 
-                    <table id="rubriques-table" class="table table-striped table-bordered nowrap">
+                    <table id="permissions-table" class="table table-striped table-bordered nowrap">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width:20px">#</th>
-                                <th>Rubriques</th>
+                                <th>Permissions</th>
                                 <th style="width:50px" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(rubrique, index) in role_rubriques" :key="index">
+                            <tr v-for="(permission, index) in role_permissions" :key="index">
                                 <td>@{{ index+1}}</td>
-                                <td>@{{ rubrique.name }}</td>
+                                <td>@{{ permission.name }}</td>
                                 <td>
                                     <div class="text-center">
-                                        <i class="feather icon-trash text-danger f-18 clickable" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer" v-on:click="revoke_rubrique(rubrique.id,index)">
+                                        <i class="feather icon-trash text-danger f-18 clickable" data-toggle="tooltip" data-placement="top" data-original-title="Supprimer" v-on:click="revoke_permission(permission.id,index)">
                                         </i>
                                     </div>
                                 </td>
@@ -200,7 +200,7 @@
     {{-- <div class="col-sm-5">
             <select name="from" id="optgroup" class="form-control" size="8" multiple="multiple">
 
-        <option v-for="(rubrique, index) in rubriques" value="rubrique.id">@{{rubrique.name}}</option>
+        <option v-for="(permission, index) in permissions" value="permission.id">@{{permission.name}}</option>
 
 
     </select>
@@ -230,12 +230,12 @@
 <script>
     $(document).ready(function() {
         $('#test').multiSelect({
-            selectableHeader: "<div class='custom-header'>Les rubriques disponibles</div>",
-            selectionHeader: "<div class='custom-header'>Les rubriques sélectionnées</div>",
+            selectableHeader: "<div class='custom-header'>Les permissions disponibles</div>",
+            selectionHeader: "<div class='custom-header'>Les permissions sélectionnées</div>",
 
         });
 
-        $('#assign-rubriques-modal').on('hide.bs.modal', function() {
+        $('#assign-permissions-modal').on('hide.bs.modal', function() {
             $('#test').multiSelect('deselect_all');
         });
     });
@@ -245,15 +245,15 @@
         el: '#app',
         data() {
             return {
-                selectedService: '',
+                selectedRole: '',
                 roleName: '',
-                newService: '',
-                selectedServiceName: '',
-                selectedServiceIndex: '',
-                role_rubriques: [],
+                newRole: '',
+                selectedRoleName: '',
+                selectedRoleIndex: '',
+                role_permissions: [],
                 services: [],
-                rubriques: [],
-                selectedRubriques: [],
+                permissions: [],
+                selectedPermissions: [],
                 errors: [],
                 notifications: [],
                 notifications_fetched: false,
@@ -261,22 +261,22 @@
         },
         computed: {
             //  ...mapGetters ({
-            //     allservices :'ALL_ROLES',
-            //     //'role_rubriques',
+            //     allroles :'ALL_ROLES',
+            //     //'role_permissions',
             //  })
-            get_services() {
+            get_roles() {
                 return this.services;
             }
         },
         methods: {
-            showRubriques(service, rubriques) {
-                app.role_rubriques = rubriques;
-                console.log(rubriques);
-                app.selectedService = service.id;
-                app.selectedServiceName = service.name;
-                console.log(app.selectedService);
+            showPermissions(role, permissions) {
+                app.role_permissions = permissions;
+                console.log(permissions);
+                app.selectedRole = role.id;
+                app.selectedRoleName = role.name;
+                console.log(app.selectedRole);
             },
-            deleteService(id, index) {
+            deleteRole(id, index) {
                 swal({
                         title: "Êtes-vous sûr?",
                         text: "Cette action est irréversible!",
@@ -293,9 +293,9 @@
                             axios.delete('/role_delete/' + id)
                                 .then(function(response) {
                                     if (response.data.success) {
-                                        app.services.splice(index, 1)
-                                        app.selectedServiceName = '';
-                                        app.selectedServiceIndex = '';
+                                        app.roles.splice(index, 1)
+                                        app.selectedRoleName = '';
+                                        app.selectedRoleIndex = '';
                                         notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                                     } else {
                                         notify('Erreur', response.data.error, 'red', 'topCenter', 'bounceInDown');
@@ -314,32 +314,32 @@
 
 
             },
-            fetch_rubriques() {
-                return axios.get('/getRubriques')
-                    // .then(response => this.rubriques = response.data.rubriques)
+            fetch_permissions() {
+                return axios.get('/getPermissions')
+                    // .then(response => this.permissions = response.data.permissions)
                     .then(function(response) {
-                        this.rubriques = response.data.rubriques;
-                        this.rubriques.forEach(rubrique => {
+                        this.permissions = response.data.permissions;
+                        this.permissions.forEach(permission => {
                             $('#test').multiSelect(
                                 'addOption', {
-                                    value: rubrique.id,
-                                    text: rubrique.name
+                                    value: permission.id,
+                                    text: permission.name
                                 },
                             );
                         });
                     })
                     .catch();
             },
-            add_service() {
+            add_role() {
                 axios.post('/role_add', {
-                        'name': app.newService
+                        'name': app.newRole
                     })
                     .then(function(response) {
-                        app.services.push(response.data.role);
-                        $('#add-service-modal').modal('toggle');
-                        app.newService = '';
-                        app.selectedServiceName = '';
-                        app.selectedServiceIndex = '';
+                        app.roles.push(response.data.role);
+                        $('#add-role-modal').modal('toggle');
+                        app.newRole = '';
+                        app.selectedRoleName = '';
+                        app.selectedRoleIndex = '';
                         notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                     })
                     .catch(function(error) {
@@ -352,13 +352,13 @@
                         }
                     });
             },
-            update_service(name, index) {
-                axios.put('/role_edit/' + this.selectedService, {
+            update_role(name, index) {
+                axios.put('/role_edit/' + this.selectedRole, {
                         'name': name
                     })
                     .then(function(response) {
-                        app.$set(app.services, index, response.data.role);
-                        $('#edit-service-modal').modal('toggle');
+                        app.$set(app.roles, index, response.data.role);
+                        $('#edit-role-modal').modal('toggle');
                         app.roleName = '';
                         notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                     })
@@ -373,23 +373,23 @@
                     });
 
             },
-            assign_rubriques() {
-                this.selectedRubriques = $('#test').multiSelect().val();
-                var rubriques = this.selectedRubriques.toString().split(',').map(Number);
-                axios.post('/role_assign_rubriques/' + this.selectedService, {
-                        'rubriques': rubriques
+            assign_permissions() {
+                this.selectedPermissions = $('#test').multiSelect().val();
+                var permissions = this.selectedPermissions.toString().split(',').map(Number);
+                axios.post('/role_assign_permissions/' + this.selectedRole, {
+                        'permissions': permissions
                     })
                     .then(function(response) {
-                        // app.$set(app.services,index,response.data.role);
-                        // app.fetch_services();
-                        $('#assign-rubriques-modal').modal('toggle');
-                        app.role_rubriques = response.data.rubriques;
-                        console.log(response.data.services);
-                        console.log(app.services);
+                        // app.$set(app.roles,index,response.data.role);
+                        // app.fetch_roles();
+                        $('#assign-permissions-modal').modal('toggle');
+                        app.role_permissions = response.data.permissions;
+                        console.log(response.data.roles);
+                        console.log(app.roles);
 
-                        app.services = response.data.services;
-                        console.log(app.services);
-                        app.selectedRubriques = '';
+                        app.roles = response.data.roles;
+                        console.log(app.roles);
+                        app.selectedPermissions = '';
                         notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                     })
                     .catch(function(error) {
@@ -402,25 +402,25 @@
                         }
                     });
             },
-            revoke_rubrique(id, index) {
-                console.log(app.services[0].rubriques);
-                console.log(this.selectedService);
-                console.log(this.selectedServiceIndex);
+            revoke_permission(id, index) {
+                console.log(app.roles[0].permissions);
+                console.log(this.selectedRole);
+                console.log(this.selectedRoleIndex);
                 console.log(index);
 
-                axios.post('/role_revoke_rubrique/' + this.selectedService, {
-                        'rubrique': id
+                axios.post('/role_revoke_permission/' + this.selectedRole, {
+                        'permission': id
                     })
                     .then(function(response) {
-                        console.log(app.role_rubriques);
+                        console.log(app.role_permissions);
 
-                        app.$delete(app.role_rubriques, index, 1);
-                        console.log(app.role_rubriques);
+                        app.$delete(app.role_permissions, index, 1);
+                        console.log(app.role_permissions);
 
 
-                        app.services[app.selectedServiceIndex].rubriques.slice(index, 1);
-                        //app.fetch_services();
-                        // app.selectedService = '';
+                        app.roles[app.selectedRoleIndex].permissions.slice(index, 1);
+                        //app.fetch_roles();
+                        // app.selectedRole = '';
                         notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                     })
                     .catch(function(error) {
@@ -433,21 +433,21 @@
                         }
                     });
             },
-            get_selected_rubriques() {
-                $('#test').multiSelect('select', app.role_rubriques.map(p => p.id + ''));
+            get_selected_permissions() {
+                $('#test').multiSelect('select', app.role_permissions.map(p => p.id + ''));
 
             },
         },
         created() {
-            console.log('ServicesList created..');
+            console.log('RolesList created..');
             this.fetch_services();
-            this.fetch_rubriques();
-            console.log(this.rubriques);
-            this.fetch_rubriques()
+            // this.fetch_permissions();
+            // console.log(this.permissions);
+            // this.fetch_permissions()
         },
         mounted() {
             $('#optgroup').multiSelect();
-            this.fetch_rubriques();
+            this.fetch_permissions();
         }
     });
     $('#optgroup').multiSelect({
