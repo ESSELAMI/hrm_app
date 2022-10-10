@@ -61,7 +61,7 @@ Route::get('/services_list', [ServiceController::class, 'index'])->name('service
 Route::get('/confirmedlevels_list', [ConfirmedLevelController::class, 'index'])->name('confirmedlevels-list')->middleware(['auth', 'role_or_permission:user']);
 
 Route::get('/getRoles', [RoleController::class, 'getRoles'])->name('getRoles')->middleware(['auth', 'role:superadmin']);
-Route::get('/getServices', [ServiceController::class, 'geServices'])->name('geServices')->middleware(['auth', 'role:superadmin|admin']);
+Route::get('/getServices', [ServiceController::class, 'getServices'])->name('geServices')->middleware(['auth', 'role:superadmin|admin']);
 Route::post('/role_assign_permissions/{id}', [RoleController::class, 'assignPermissions'])->name('role-assign-permissions')->middleware(['auth', 'role:superadmin']);
 
 Route::post('/role_revoke_permission/{id}', [RoleController::class, 'revokePermission'])->name('role-revoke-permissions')->middleware(['auth', 'role:superadmin']);
@@ -93,6 +93,7 @@ Route::resource('agents', AgentController::class)->middleware(['auth', 'role_or_
 Route::resource('missions', MissionController::class)->middleware(['auth', 'role_or_permission:user']);
 
 Route::resource('fonctions', FonctionController::class)->middleware(['auth', 'role_or_permission:user']);
+Route::resource('services', ServiceController::class)->middleware(['auth', 'role_or_permission:user']);
 
 Route::resource('leavedocs', LeaveDocController::class)->middleware(['auth', 'role_or_permission:user']);
 
