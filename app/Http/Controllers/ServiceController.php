@@ -22,21 +22,16 @@ class ServiceController extends Controller
     {
         $role = Auth::user()->getRoleNames()->first();
         switch ($role) {
-            case 'user':
-                $services = Service::with('category', 'section')->get();
+            case 'superadmin':
+                $services = Service::with('rubriques')->get();
 
-                $categories = Category::all();
-                $sections = Section::all();
-                return view('user.functions_list', compact('fonctions', 'sections', 'categories'));
+                return view('superadmin.services_list', compact('services'));
                 break;
-                // case 'responsable_patrimoine':
-                // $vehicles = Vehicle::with('fonctions')->where('structure_id',Auth::user()->structure_id)->get();
-                // return view('parc_manager.fonctions_list',compact('fonctions','vehicles'));
-                //     break;
-                // case 'superviseur':
-                // $vehicles = Vehicle::with('fonctions')->where('structure_id',Auth::user()->structure_id)->get();
-                // return view('parc_manager.fonctions_list',compact('fonctions','vehicles'));
-                //     break;
+            case 'admin':
+                $services = Service::with('rubriques')->get();
+
+                return view('admin.services_list', compact('services'));
+                break;
         }
     }
 
@@ -52,7 +47,7 @@ class ServiceController extends Controller
 
     public function getServices()
     {
-        $services = Service::with('rubrique')->get();
+        $services = Service::with('rubriques')->get();
         // with('agent')->where('structure_id',Auth::user()->structure_id)->get();
 
 
@@ -119,7 +114,7 @@ class ServiceController extends Controller
 
         return response()->json([
             'success' => 'Inoformation modifiée avec succès',
-            'fonction' => $service
+            'service' => $service
         ]);
     }
 

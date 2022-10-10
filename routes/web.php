@@ -93,7 +93,7 @@ Route::resource('agents', AgentController::class)->middleware(['auth', 'role_or_
 Route::resource('missions', MissionController::class)->middleware(['auth', 'role_or_permission:user']);
 
 Route::resource('fonctions', FonctionController::class)->middleware(['auth', 'role_or_permission:user']);
-Route::resource('services', ServiceController::class)->middleware(['auth', 'role_or_permission:user']);
+Route::resource('services', ServiceController::class)->middleware(['auth', 'role_or_permission:admin|superadmin']);
 
 Route::resource('leavedocs', LeaveDocController::class)->middleware(['auth', 'role_or_permission:user']);
 
