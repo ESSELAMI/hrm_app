@@ -15,7 +15,7 @@
 @endsection
 
 
-@include('user.navigation')
+@include('admin.navigation')
 
 
 @section('page_content')
